@@ -17,6 +17,7 @@
 package ru.mail.polis;
 
 import org.jetbrains.annotations.NotNull;
+import ru.mail.polis.Denis.MyDao;
 
 import java.io.File;
 import java.io.IOException;
@@ -54,6 +55,6 @@ final class KVDaoFactory {
         }
 
         // TODO: Implement me
-        throw new UnsupportedOperationException("Implement me!");
+        return new MyDao(data);
     }
 }

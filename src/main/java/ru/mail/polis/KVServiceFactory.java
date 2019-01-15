@@ -16,7 +16,10 @@
 
 package ru.mail.polis;
 
+import one.nio.http.HttpServerConfig;
+import one.nio.server.AcceptorConfig;
 import org.jetbrains.annotations.NotNull;
+import ru.mail.polis.Denis.MyService;
 
 import java.io.IOException;
 import java.util.Set;
@@ -55,6 +58,11 @@ final class KVServiceFactory {
         }
 
         // TODO: Implement me
-        throw new UnsupportedOperationException("Implement me!");
+        HttpServerConfig serverConfig = new HttpServerConfig();
+        AcceptorConfig acceptorConfig = new AcceptorConfig();
+        acceptorConfig.port = port;
+        serverConfig.acceptors = new AcceptorConfig[]{acceptorConfig};
+
+        return new MyService(serverConfig, dao);
     }
 }
