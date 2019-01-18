@@ -63,6 +63,6 @@ final class KVServiceFactory {
         acceptorConfig.port = port;
         serverConfig.acceptors = new AcceptorConfig[]{acceptorConfig};
 
-        return new MyService(serverConfig, dao);
+        return new MyService(serverConfig, dao, topology);
     }
 }
