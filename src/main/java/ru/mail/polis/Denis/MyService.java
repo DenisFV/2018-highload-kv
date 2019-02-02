@@ -40,7 +40,8 @@ public class MyService extends HttpServer implements KVService {
     @Path("/v0/entity")
     public Response entity(@Param("id") String id, Request request, @Param("replicas") String replicas) {
         boolean proxied = request.getHeader("Proxied") != null;
-        int from = topology.length, ack = from / 2 + 1;
+        int from = topology.length;
+        int ack = topology.length / 2 + 1;
         try {
             if (id == null || id.isEmpty()) throw new IllegalArgumentException();
             if (replicas != null) {
@@ -124,7 +125,7 @@ public class MyService extends HttpServer implements KVService {
     }
 
     private void proxyPut(String id, int ack, List<String> from, byte[] value) throws Exception {
-        int fl=0;
+        int fl = 0;
         for (String node : from) {
             try{
                 if (node.equals(hostport)) {
